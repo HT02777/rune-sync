@@ -1,3 +1,4 @@
+import { createSyncState } from '$lib/core.svelte.js';
 import type { StateSynchronizer } from '../types.js';
 
 export const localStorageSync: StateSynchronizer = {
@@ -7,3 +8,5 @@ export const localStorageSync: StateSynchronizer = {
 	},
 	write: (key: string, val: unknown) => localStorage.setItem(key, JSON.stringify(val))
 };
+
+export const lsSync = createSyncState(localStorageSync);

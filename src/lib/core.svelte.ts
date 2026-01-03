@@ -20,7 +20,7 @@ export function createSyncState(synchronizer: StateSynchronizer) {
 		let isRemoteUpdating = false;
 		let lastSaved: T | undefined = undefined;
 
-		if (typeof window !== 'undefined' || synchronizer.serverCompatible) {
+		if (typeof window !== 'undefined') {
 			Promise.resolve(synchronizer.read<T>(key)).then((saved) => {
 				if (saved) {
 					Object.assign(state, saved);
