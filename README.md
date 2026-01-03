@@ -75,7 +75,10 @@ const myCustomSync: StateSynchronizer = {
 	// Optional: Enable real-time updates
 	subscribe: (key: string, callback: (newValue: unknown) => void) => {
 		// Set up real-time listener
-		const unsubscribe = myRealtimeService.subscribe(key, callback);
+		// Callback must be called with the new value when it changes (when event occurs)
+		const unsubscribe = myRealtimeService.subscribe(key, (data) => {
+			callback(data.value);
+		});
 		return unsubscribe;
 	}
 };
