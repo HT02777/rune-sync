@@ -10,6 +10,18 @@ A powerful and flexible Svelte 5 library for synchronizing reactive state across
 
 ## Quick Start
 
+### Installation
+
+```bash
+npm install rune-sync
+# or
+pnpm add rune-sync
+# or
+yarn add rune-sync
+```
+
+### Usage
+
 ```typescript
 import { createSyncState } from 'rune-sync';
 import { lsSync } from 'rune-sync/localstorage';
@@ -31,27 +43,73 @@ Yes, that's all it takes to get started!
 ## Features
 
 - **Universal Storage Support**: Can work with any storage solution via custom synchronizers. Build your own sync logic for servers, WebRTC, cloud storage, or any API
-- **Built-in Synchronizers**: Ready-to-use synchronizers for localStorage and IndexedDB
-- **Real-time Updates**: Optional subscription mechanism for live synchronization
+- **Built-in Synchronizers**: Ready-to-use synchronizers for localStorage and IndexedDB with cross-tab synchronization
+- **Real-time Updates**: Automatic cross-tab synchronization for localStorage and localForage
+- **Performance Controls**: Built-in debounce and throttle options for optimizing write performance
+- **Flexible Settings**: Configurable options for subscription control and performance tuning
 - **TypeScript Support**: Full type safety with generics
 - **Zero Dependencies**: Lightweight and focused on Svelte's reactivity
 
-## Installation
+## Usage Examples
 
-```bash
-npm install rune-sync
-# or
-pnpm add rune-sync
-# or
-yarn add rune-sync
+### Basic Usage
+
+```typescript
+import { createSyncState } from 'rune-sync';
+import { lsSync } from 'rune-sync/localstorage';
+
+// Create a reactive state that persists to localStorage
+let userSettings = lsSync('user-settings', {
+	theme: 'dark',
+	language: 'en'
+});
+
+// State changes are automatically saved
+userSettings.theme = 'light'; // Persisted immediately
+```
+
+### With Performance Controls
+
+```typescript
+import { lfSync } from 'rune-sync/localforage';
+
+// Debounced writes (wait 500ms after changes before saving)
+let searchResults = lfSync(
+	'search-results',
+	{
+		query: '',
+		results: []
+	},
+	{ debounce: 500 }
+);
+
+// Throttled writes (save at most once per 1000ms)
+let realTimeData = lfSync(
+	'realtime-data',
+	{
+		value: 0
+	},
+	{ throttle: 1000 }
+);
+
+// Disable cross-tab synchronization
+let localOnlyState = lsSync(
+	'local-only',
+	{
+		data: 'sensitive'
+	},
+	{ doNotSubscribe: true }
+);
 ```
 
 ### Built-in Synchronizers
 
-- `localStorageSync`: Browser localStorage
-- `localForageSync`: IndexedDB/localStorage via localForage
+- `localStorageSync`: Browser localStorage with cross-tab synchronization via Storage API
+- `localForageSync`: IndexedDB/localStorage via localForage with cross-tab synchronization via BroadcastChannel
 
 > **Note:** If you want to use the `localForage` synchronizer, you must also install `localforage`
+
+> **Cross-tab Sync**: Both built-in synchronizers automatically synchronize state changes across browser tabs/windows
 
 ## Creating Custom Synchronizers
 
@@ -73,11 +131,11 @@ const myCustomSync: StateSynchronizer = {
 	},
 
 	// Optional: Enable real-time updates
-	subscribe: (key: string, callback: (newValue: unknown) => void) => {
+	subscribe: (key: string, write: (newValue: T) => void) => {
 		// Set up real-time listener
-		// Callback must be called with the new value when it changes (when event occurs)
+		// Call write() with the new value when it changes (when event occurs)
 		const unsubscribe = myRealtimeService.subscribe(key, (data) => {
-			callback(data.value);
+			write(data.value);
 		});
 		return unsubscribe;
 	}
@@ -100,13 +158,41 @@ Creates a state factory function that uses the provided synchronizer.
 
 **Returns:** A function that creates synchronized reactive state
 
+### State Factory Function
+
+```typescript
+const syncState = createSyncState(synchronizer);
+const state = syncState<T>(key: string, initialValue: T, settings?: SyncSettings): T;
+```
+
+**Parameters:**
+
+- `key`: Storage key for the state
+- `initialValue`: Initial state value (must be object or array)
+- `settings`: Optional configuration object
+
+**Returns:** Reactive Svelte state
+
+### `SyncSettings` Interface
+
+```typescript
+interface SyncSettings {
+	// Disable cross-tab synchronization
+	doNotSubscribe?: boolean;
+	// Debounce writes by N milliseconds
+	debounce?: number;
+	// Throttle writes to at most once per N milliseconds
+	throttle?: number;
+}
+```
+
 ### `StateSynchronizer` Interface
 
 ```typescript
 interface StateSynchronizer {
 	read<T>(key: string): Promise<T | null> | T | null;
 	write<T>(key: string, value: T): Promise<void> | void;
-	subscribe?<T>(key: string, callback: (newValue: T) => void): () => void;
+	subscribe?<T>(key: string, write: (newValue: T) => void): () => void;
 }
 ```
 
