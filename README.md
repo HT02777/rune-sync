@@ -38,7 +38,7 @@ userSettings.theme = 'light'; // Persisted immediately
 
 Yes, that's all it takes to get started!
 
-> **Limitation:** Rune-Sync state must always be an object or array. You cannot use primitive values (like strings, numbers, or booleans) as the root state. Always wrap your data in an object or array.
+> **Limitation:** Rune-Sync state must always be an object. You cannot use primitive values (like strings, numbers, or booleans) as the root state. Always wrap your data in an object.
 
 ## Features
 

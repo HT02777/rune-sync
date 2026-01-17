@@ -171,7 +171,15 @@
 				localization: 'Localization',
 				persistentCounter: 'Persistent Counter',
 				reset: 'Reset',
-				auto: 'Auto'
+				auto: 'Auto',
+				debouncedCounter: 'Debounced Counter (1000ms delay)',
+				throttledCounter: 'Throttled Counter (500ms delay)',
+				debouncedSettings: 'Debounced Settings (500ms delay)',
+				language: 'Language',
+				fontSize: 'Font Size',
+				updatesDelayed: 'Updates are delayed by 1 second',
+				updatesThrottled: 'Updates are throttled once per 500ms',
+				settingsSaved: 'Settings are saved after 500ms of inactivity'
 			}
 		},
 		ru: {
@@ -203,7 +211,15 @@
 				localization: 'Локализация',
 				persistentCounter: 'Постоянный счетчик',
 				reset: 'Сброс',
-				auto: 'Авто'
+				auto: 'Авто',
+				debouncedCounter: 'Счетчик с задержкой (1000мс)',
+				throttledCounter: 'Счетчик с ограничением (500мс)',
+				debouncedSettings: 'Настройки с задержкой (500мс)',
+				language: 'Язык',
+				fontSize: 'Размер шрифта',
+				updatesDelayed: 'Обновления задерживаются на 1 секунду',
+				updatesThrottled: 'Обновления ограничены до 1 раза в 500мс',
+				settingsSaved: 'Настройки сохраняются после 500мс бездействия'
 			}
 		},
 		es: {
@@ -231,7 +247,15 @@
 				localization: 'Localización',
 				persistentCounter: 'Contador persistente',
 				reset: 'Reiniciar',
-				auto: 'Auto'
+				auto: 'Auto',
+				debouncedCounter: 'Contador con retraso (1000ms)',
+				throttledCounter: 'Contador limitado (500ms)',
+				debouncedSettings: 'Ajustes con retraso (500ms)',
+				language: 'Idioma',
+				fontSize: 'Tamaño de fuente',
+				updatesDelayed: 'Las actualizaciones se retrasan 1 segundo',
+				updatesThrottled: 'Las actualizaciones se limitan a 1 cada 500ms',
+				settingsSaved: 'Los ajustes se guardan después de 500ms de inactividad'
 			}
 		}
 	};
@@ -477,7 +501,7 @@
 					</div>
 
 					<div class="card counter-card">
-						<span class="counter-label">Debounced Counter (1000ms delay)</span>
+						<span class="counter-label">{t.labels.debouncedCounter}</span>
 						<div class="counter-value">{debouncedCounter.value}</div>
 						<div class="counter-actions">
 							<button class="icon-btn" onclick={() => debouncedCounter.value--}>−</button>
@@ -487,12 +511,12 @@
 							<button class="icon-btn" onclick={() => debouncedCounter.value++}>+</button>
 						</div>
 						<div class="debounce-info">
-							<small>Updates are delayed by 1 second</small>
+							<small>{t.labels.updatesDelayed}</small>
 						</div>
 					</div>
 
 					<div class="card counter-card">
-						<span class="counter-label">Throttled Counter (500ms delay)</span>
+						<span class="counter-label">{t.labels.throttledCounter}</span>
 						<div class="counter-value">{throttledCounter.value}</div>
 						<div class="counter-actions">
 							<button class="icon-btn" onclick={() => throttledCounter.value--}>−</button>
@@ -502,15 +526,15 @@
 							<button class="icon-btn" onclick={() => throttledCounter.value++}>+</button>
 						</div>
 						<div class="debounce-info">
-							<small>Updates are throttled once per 500ms</small>
+							<small>{t.labels.updatesThrottled}</small>
 						</div>
 					</div>
 
 					<div class="card settings-card">
-						<span class="counter-label">Debounced Settings (500ms delay)</span>
+						<span class="counter-label">{t.labels.debouncedSettings}</span>
 						<div class="settings-grid">
 							<div class="setting-item">
-								<label for="debounced-language">Language</label>
+								<label for="debounced-language">{t.labels.language}</label>
 								<select id="debounced-language" bind:value={debouncedSettings.language}>
 									<option value="en">English</option>
 									<option value="ru">Русский</option>
@@ -518,7 +542,7 @@
 								</select>
 							</div>
 							<div class="setting-item">
-								<label for="debounced-fontsize">Font Size</label>
+								<label for="debounced-fontsize">{t.labels.fontSize}</label>
 								<input
 									id="debounced-fontsize"
 									type="range"
@@ -530,7 +554,7 @@
 							</div>
 						</div>
 						<div class="debounce-info">
-							<small>Settings are saved after 500ms of inactivity</small>
+							<small>{t.labels.settingsSaved}</small>
 						</div>
 					</div>
 				</div>

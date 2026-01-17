@@ -6,7 +6,7 @@ export interface StateSynchronizer {
 	subscribe?<T extends syncState>(key: string, write: (newValue: T) => void): () => void;
 }
 
-export type syncState = { [key: string]: unknown } | unknown[];
+export type syncState = { [key: string]: unknown };
 
 export interface SyncSettings {
 	doNotSubscribe?: boolean;
